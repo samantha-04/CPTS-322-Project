@@ -1,10 +1,11 @@
 import math as m
 
 # Finds dot prod. between 2 vectors
+# O(n)
 def FindDotProduct (p1 : list, p2 : list):
     """
-    Calculates the dot product between two given vectors
-    Requires two lists as input
+    Calculates the dot product between two given vectors.
+    Requires two lists as input.
     """
 
     if (len(p1) == len(p2)):
@@ -19,10 +20,11 @@ def FindDotProduct (p1 : list, p2 : list):
 
 
 # Finds unit vector
+# O(n)
 def FindUnitVector (v : list):
     """
     Calculates the unit vector for a given vector.
-    Requires a list as input
+    Requires a list as input.
     """
 
     res = []
@@ -40,10 +42,11 @@ def FindUnitVector (v : list):
     return res
 
 # Determines if a matching is stable.
+# O(1)
 def StableMatch (dotProd : float):
     """
-    Determines if two roommates would be a stable match
-    Requires a float as input
+    Determines if two roommates would be a stable match.
+    Requires a float as input.
     """
 
     if (dotProd > .7):
