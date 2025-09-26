@@ -49,7 +49,7 @@ install: setup
 	fi
 
 # Run Flask app locally (development mode)
-run:
+runFlask:
 	@if command -v python3 >/dev/null 2>&1; then \
 		python3 app.py; \
 	elif command -v python >/dev/null 2>&1; then \
