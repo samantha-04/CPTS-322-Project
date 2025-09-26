@@ -1,10 +1,28 @@
 services:
-  web:
-    build: .
+  frontend:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
     ports:
-      - "5000:5000"
+      - "8000:8000"
     environment:
       - FLASK_ENV=development
     volumes:
-      - .:/app
+      - ./frontend:/app/frontend
+      - ./frontend/static:/app/frontend/static
+      - ./frontend/templates:/app/frontend/templates
+    restart: unless-stopped
+    depends_on:
+      - backend
+  
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    ports:
+      - "5646:5646"
+    environment:
+      - FLASK_ENV=development
+    volumes:
+      - ./backend:/app/backend
     restart: unless-stopped

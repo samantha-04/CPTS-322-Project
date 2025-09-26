@@ -11,7 +11,7 @@ help:
 	@echo "  make run         - Run Flask app locally"
 	@echo "  make build       - Build Docker image"
 	@echo "  make docker-run  - Run app using Docker Compose (foreground)"
-	@echo "  make docker-start- Run app using Docker Compose (background)"
+	@echo "  make - Run app using Docker Compose (background)"
 	@echo "  make docker-stop - Stop Docker containers"
 	@echo "  make docker-build- Build and run with Docker Compose"
 	@echo "  make clean       - Clean up Python cache files"
