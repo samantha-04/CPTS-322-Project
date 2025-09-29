@@ -1,4 +1,4 @@
-import math as m
+from math import sqrt, pow
 
 # Finds dot prod. between 2 vectors
 # O(n)
@@ -32,8 +32,8 @@ def FindUnitVector (v : list) -> list[float]:
 
     # Finding vector magnitude.
     for i in v:
-        magnitude += m.pow(i,2)
-    magnitude = m.sqrt(magnitude)
+        magnitude += pow(i,2)
+    magnitude = sqrt(magnitude)
 
     # Normalizing the vector.
     for i in v:
