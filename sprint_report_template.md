@@ -3,7 +3,7 @@ Video Link:
 ## What's New (User Facing)
  * Feature 1 or Bug Fix 1
  * Feature 2 or Bug Fix 2
- * Feature n or Bug Fix n
+ * Matching Algorithm
 
 ## Work Summary (Developer Facing)
 Provide a one paragraph synposis of what your team accomplished this sprint. Don't repeat the "What's New" list of features. Instead, help the instructor understand how you went about the work described there, any barriers you overcame, and any significant learnings for your team.
@@ -16,7 +16,7 @@ Here are links to the issues that we completed in this sprint:
 
  * URL of issue 1
  * URL of issue 2
- * URL of issue n
+ * [Matching Algorithm] (https://github.com/samantha-04/CPTS-322-Project/issues/10)
 
  Desirables (Remove this section when you save the file):
   * Each issue should be assigned to a milestone
@@ -59,4 +59,5 @@ Here's what we'd like to improve:
 Here are changes we plan to implement in the next sprint:
    * Item 1
    * Item 2
+
    * Item x
