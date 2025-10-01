@@ -1,3 +1,23 @@
+# Multi-stage build: Node.js for React build, Python for Flask serve
+FROM node:18-alpine AS react-build
+
+# Set working directory for React build
+WORKDIR /app
+
+# Copy package files
+COPY code/frontend/package*.json ./
+
+# Install npm dependencies
+RUN npm ci --only=production
+
+# Copy React source code
+COPY code/frontend/src ./src
+COPY code/frontend/public ./public
+
+# Build React app
+RUN npm run build
+
+# Python stage for Flask server
 FROM python:3.9-slim
 
 # Set environment variables
@@ -16,8 +36,11 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir --upgrade pip && \
     pip install --no-cache-dir -r requirements.txt
 
-# Copy frontend code
-COPY frontend/ ./frontend/
+# Copy frontend code (including Flask app)
+COPY code/frontend/ ./frontend/
+
+# Copy built React app from previous stage
+COPY --from=react-build /app/build ./frontend/build
 
 EXPOSE 8000
 
