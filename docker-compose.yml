@@ -1,0 +1,26 @@
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: code/frontend/Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      - FLASK_ENV=development
+    volumes:
+      - ./code/frontend:/app/frontend
+    restart: unless-stopped
+    depends_on:
+      - backend
+  
+  backend:
+    build:
+      context: .
+      dockerfile: code/backend/Dockerfile
+    ports:
+      - "5646:5646"
+    environment:
+      - FLASK_ENV=development
+    volumes:
+      - ./code/backend:/app/backend
+    restart: unless-stopped
