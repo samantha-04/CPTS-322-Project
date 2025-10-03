@@ -1,20 +1,21 @@
 # Sprint x Report 
 Video Link: 
 ## What's New (User Facing)
- * Feature 1 or Bug Fix 1
- * Feature 2 or Bug Fix 2
+ * Login Page
+ * Registration Page
  * Matching Algorithm
 
 ## Work Summary (Developer Facing)
-During this sprint, we thoroughly planned out our desired final product, and subsequently discussed what product we wanted to deliver for the first sprint. We assigned tasks to each team member with clear expectations of the libraries, languages, and tools that we would use to make our integration (sprint two) as seamless as possible. WE developed a simple matching algorithm to match users with one another, we set up our docker environment, and we designed a simple UI for thwe homepage as well as the login and registration pages.
+During this sprint, we thoroughly planned out our desired final product, and subsequently discussed what product we wanted to deliver for the first sprint. We assigned tasks to each team member with clear expectations of the libraries, languages, and tools that we would use to make our integration (sprint two) as seamless as possible. We developed a simple matching algorithm to match users with one another, we set up our docker environment, we developed a straightforward Flask API, and we designed a simple UI for the homepage as well as the login and registration pages.
 ## Unfinished Work
-If applicable, explain the work you did not finish in this sprint. For issues/user stories in the current sprint that have not been closed, (a) any progress toward completion of the issues has been clearly tracked (by checking the checkboxes of  acceptance criteria), (b) a comment has been added to the issue to explain why the issue could not be completed (e.g., "we ran out of time" or "we did not anticipate it would be so much work"), and (c) the issue is added to a subsequent sprint, so that it can be addressed later.
+We had hoped to have a login/registration mechanism completed this sprint, but we ran out of time. Instead, we completed half of this process by completing the UI for these pages, and we plan on implementing the features to store user login information and authorization during sprint 2. We have made this clear on our kanban board, assigning the issue to sprint two. 
 
 ## Completed Issues/User Stories
 Here are links to the issues that we completed in this sprint:
 
- * URL of issue 1
- * URL of issue 2
+ * [Login Page] https://github.com/samantha-04/CPTS-322-Project/issues/11
+ * [Registration Page] https://github.com/samantha-04/CPTS-322-Project/issues/13
+ * [Home Page] https://github.com/samantha-04/CPTS-322-Project/issues/12
  * [Matching Algorithm] (https://github.com/samantha-04/CPTS-322-Project/issues/10)
 
  Desirables (Remove this section when you save the file):
