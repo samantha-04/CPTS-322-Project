@@ -7,8 +7,8 @@ WORKDIR /app
 # Copy package files
 COPY code/frontend/package*.json ./
 
-# Install npm dependencies
-RUN npm ci --only=production
+# Install npm dependencies (including dev dependencies needed for build)
+RUN npm ci
 
 # Copy React source code
 COPY code/frontend/src ./src
