@@ -6,6 +6,7 @@ import hashlib
 users = {}
 sessions = {}
 
+# I think that this also handles new user creation
 def login(app, redirect_uri=None):
     """Login function - handles both OAuth start and callback"""
     from flask import request
@@ -49,3 +50,10 @@ def login(app, redirect_uri=None):
         pass
     
     return None
+
+def logout(token):
+    """Logout function - removes session"""
+    if token in sessions:
+        del sessions[token]
+        return True
+    return False
