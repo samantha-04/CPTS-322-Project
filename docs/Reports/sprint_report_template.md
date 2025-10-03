@@ -6,8 +6,7 @@ Video Link:
  * Matching Algorithm
 
 ## Work Summary (Developer Facing)
-Provide a one paragraph synposis of what your team accomplished this sprint. Don't repeat the "What's New" list of features. Instead, help the instructor understand how you went about the work described there, any barriers you overcame, and any significant learnings for your team.
-
+During this sprint, we thoroughly planned out our desired final product, and subsequently discussed what product we wanted to deliver for the first sprint. We assigned tasks to each team member with clear expectations of the libraries, languages, and tools that we would use to make our integration (sprint two) as seamless as possible. WE developed a simple matching algorithm to match users with one another, we set up our docker environment, and we designed a simple UI for thwe homepage as well as the login and registration pages.
 ## Unfinished Work
 If applicable, explain the work you did not finish in this sprint. For issues/user stories in the current sprint that have not been closed, (a) any progress toward completion of the issues has been clearly tracked (by checking the checkboxes of  acceptance criteria), (b) a comment has been added to the issue to explain why the issue could not be completed (e.g., "we ran out of time" or "we did not anticipate it would be so much work"), and (c) the issue is added to a subsequent sprint, so that it can be addressed later.
 
