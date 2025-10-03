@@ -1,4 +1,4 @@
-# Sprint x Report 
+# Sprint 1 Report 
 Video Link: 
 ## What's New (User Facing)
  * Login Page
@@ -57,7 +57,7 @@ Here's what we'd like to improve:
    * Item x
   
 Here are changes we plan to implement in the next sprint:
-   * Item 1
+   * Wrapper MatchRoomate class
    * Item 2
 
    * Item x
