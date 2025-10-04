@@ -17,6 +17,11 @@ Here are links to the issues that we completed in this sprint:
  * [Registration Page] https://github.com/samantha-04/CPTS-322-Project/issues/13
  * [Home Page] https://github.com/samantha-04/CPTS-322-Project/issues/12
  * [Matching Algorithm] (https://github.com/samantha-04/CPTS-322-Project/issues/10)
+ * [Containerized Services] https://github.com/samantha-04/CPTS-322-Project/issues/19
+ * [Basic API Setup] https://github.com/samantha-04/CPTS-322-Project/issues/17
+ * [Api Communication] https://github.com/samantha-04/CPTS-322-Project/issues/16
+ * [health check] https://github.com/samantha-04/CPTS-322-Project/issues/14
+ * [Basic Frontend Setup] https://github.com/samantha-04/CPTS-322-Project/issues/15
 
  Desirables (Remove this section when you save the file):
   * Each issue should be assigned to a milestone
@@ -27,36 +32,25 @@ Here are links to the issues that we completed in this sprint:
   * Story points contribution of each team member should be indicated in a comment
  
  ## Incomplete Issues/User Stories
- Here are links to issues we worked on but did not complete in this sprint:
- 
- * URL of issue 1 <<One sentence explanation of why issue was not completed>>
- * URL of issue 2 <<One sentence explanation of why issue was not completed>>
- * URL of issue n <<One sentence explanation of why issue was not completed>>
- 
- Examples of explanations (Remove this section when you save the file):
-  * "We ran into a complication we did not anticipate (explain briefly)." 
-  * "We decided that the feature did not add sufficient value for us to work on it in this sprint (explain briefly)."
-  * "We could not reproduce the bug" (explain briefly).
-  * "We did not get to this issue because..." (explain briefly)
+ We finshed all the issues we started :)
 
 ## Code Files for Review
 Please review the following code files, which were actively developed during this sprint, for quality:
- * [Name of code file 1](https://github.com/your_repo/file_extension)
- * [Name of code file 2](https://github.com/your_repo/file_extension)
- * [Name of code file 3](https://github.com/your_repo/file_extension)
+ * [Matching.py](https://github.com/your_repo/file_extension](https://github.com/samantha-04/CPTS-322-Project/blob/main/code/backend/Matching.py)
+ * [app.py](https://github.com/your_repo/file_extension](https://github.com/samantha-04/CPTS-322-Project/blob/main/code/backend/api/app.py)
+ * [Login.jsx](https://github.com/your_repo/file_extension](https://github.com/samantha-04/CPTS-322-Project/blob/main/code/frontend/src/Login.jsx)
  
 ## Retrospective Summary
 Here's what went well:
   * All of the items that we planned to get done for the sprint were finished
-  * Item 2
-  * Item x
+  * Communicated well
  
 Here's what we'd like to improve:
    * Start earlier, we started development fairly late into the sprint, more could have been done if we started earlier
-   * Item 2
-   * Item x
+   * Meeting more often to stay more on page with one another
   
 Here are changes we plan to implement in the next sprint:
    * Wrapper MatchRoomate class
    * SQL Database for users
-   * Add to the main menu and add funcionality
+   * Add to the main menu and add functionality
+   * Integrate different parts
