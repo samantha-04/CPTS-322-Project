@@ -1,5 +1,5 @@
 # Sprint 1 Report 
-Video Link: 
+Video Link: https://youtu.be/U68arzalYVI
 ## What's New (User Facing)
  * Login Page
  * Registration Page
