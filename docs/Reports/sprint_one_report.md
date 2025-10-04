@@ -47,17 +47,16 @@ Please review the following code files, which were actively developed during thi
  
 ## Retrospective Summary
 Here's what went well:
-  * Item 1
+  * All of the items that we planned to get done for the sprint were finished
   * Item 2
   * Item x
  
 Here's what we'd like to improve:
-   * Item 1
+   * Start earlier, we started development fairly late into the sprint, more could have been done if we started earlier
    * Item 2
    * Item x
   
 Here are changes we plan to implement in the next sprint:
    * Wrapper MatchRoomate class
-   * Item 2
-
-   * Item x
+   * SQL Database for users
+   * Add to the main menu and add funcionality
