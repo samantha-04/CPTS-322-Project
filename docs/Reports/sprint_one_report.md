@@ -36,9 +36,9 @@ Here are links to the issues that we completed in this sprint:
 
 ## Code Files for Review
 Please review the following code files, which were actively developed during this sprint, for quality:
- * [Matching.py](https://github.com/your_repo/file_extension](https://github.com/samantha-04/CPTS-322-Project/blob/main/code/backend/Matching.py)
- * [app.py](https://github.com/your_repo/file_extension](https://github.com/samantha-04/CPTS-322-Project/blob/main/code/backend/api/app.py)
- * [Login.jsx](https://github.com/your_repo/file_extension](https://github.com/samantha-04/CPTS-322-Project/blob/main/code/frontend/src/Login.jsx)
+ * [Matching.py](https://github.com/samantha-04/CPTS-322-Project/blob/main/code/backend/Matching.py)
+ * [app.py](https://github.com/samantha-04/CPTS-322-Project/blob/main/code/backend/api/app.py)
+ * [Login.jsx](https://github.com/samantha-04/CPTS-322-Project/blob/main/code/frontend/src/Login.jsx)
  
 ## Retrospective Summary
 Here's what went well:
