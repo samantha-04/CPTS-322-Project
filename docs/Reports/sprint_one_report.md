@@ -22,6 +22,11 @@ Here are links to the issues that we completed in this sprint:
  * [Api Communication] https://github.com/samantha-04/CPTS-322-Project/issues/16
  * [health check] https://github.com/samantha-04/CPTS-322-Project/issues/14
  * [Basic Frontend Setup] https://github.com/samantha-04/CPTS-322-Project/issues/15
+ * [Containerized Services] https://github.com/samantha-04/CPTS-322-Project/issues/19
+ * [Basic API Setup] https://github.com/samantha-04/CPTS-322-Project/issues/17
+ * [Api Communication] https://github.com/samantha-04/CPTS-322-Project/issues/16
+ * [health check] https://github.com/samantha-04/CPTS-322-Project/issues/14
+ * [Basic Frontend Setup] https://github.com/samantha-04/CPTS-322-Project/issues/15
 
  Desirables (Remove this section when you save the file):
   * Each issue should be assigned to a milestone
@@ -36,9 +41,9 @@ Here are links to the issues that we completed in this sprint:
 
 ## Code Files for Review
 Please review the following code files, which were actively developed during this sprint, for quality:
- * [Matching.py](https://github.com/samantha-04/CPTS-322-Project/blob/main/code/backend/Matching.py)
- * [app.py](https://github.com/samantha-04/CPTS-322-Project/blob/main/code/backend/api/app.py)
- * [Login.jsx](https://github.com/samantha-04/CPTS-322-Project/blob/main/code/frontend/src/Login.jsx)
+ * [Name of code file 1](https://github.com/your_repo/file_extension)
+ * [Name of code file 2](https://github.com/your_repo/file_extension)
+ * [Name of code file 3](https://github.com/your_repo/file_extension)
  
 ## Retrospective Summary
 Here's what went well:
