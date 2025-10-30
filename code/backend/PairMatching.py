@@ -3,16 +3,17 @@ import Matching
 
 
 class PairMatching:
-    """Class for finding best user pairings"""
+    """Class for finding the best user pairings"""
 
     def __init__(self, users):
         self.__userPairs: __MatchingPair = []
-        self.__matchedUsers = []
+        self.__unmatchedUsers = set()
         self.__CreatePairs(users)
         heapq._heapify_max(self.__userPairs)
 
     def __CreatePairs(self, users):
         for i in range(len(users)):
+            self.__unmatchedUsers.add(users[i])
             for j in range(len(users)):
                 self.__userPairs.append(
                     __MatchingPair(
@@ -21,17 +22,21 @@ class PairMatching:
                 )
 
     def findMatch(self):
+        """Returns a Tuple containing the user pair and their inner product"""
         while len(self.__userPairs) != 0:
             pair: __MatchingPair = self.__userPairs.pop()
-            if pair.user1 in self.__matchedUsers or pair.user2 in self.__matchedUsers:
-                continue
-            else:
-                self.__matchedUsers.append(pair.user1)
-                self.__matchedUsers.append(pair.user2)
+            if (
+                pair.user1 in self.__unmatchedUsers
+                and pair.user2 in self.__unmatchedUsers
+            ):
+                self.__unmatchedUsers.remove(pair.user1)
+                self.__unmatchedUsers.remove(pair.user2)
                 return (pair.user1, pair.user2, pair.data)
+        return None
 
 
 class __MatchingPair:
+    """Internal Class used for comparing matching data"""
 
     def __init__(self, user1, user2, data: float):
         self.user1 = user1
