@@ -47,17 +47,17 @@ const Questionnaire = ({ onSubmitted }) => {
 
     setStatus('Submitting...');
     try {
-      const res = await fetch(`${API_BASE}/submit_answers`, {
+      const res = await fetch(`${API_BASE}/api/survey/submit`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ user_id: userId, answers })
+        body: JSON.stringify({ username: userId, answers })
       });
       const json = await res.json();
       if (res.ok) {
-        setStatus('Saved');
+        setStatus('Saved successfully!');
         if (onSubmitted) onSubmitted(userId);
       } else {
-        setStatus(json.error || 'Error');
+        setStatus(json.message || 'Error');
       }
     } catch (err) {
       console.error(err);
