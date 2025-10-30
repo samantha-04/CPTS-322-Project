@@ -1,15 +1,15 @@
-# Sprint x Report 
+# Sprint 2 Report 
 Video Link: 
 ## What's New (User Facing)
- * Feature 1 or Bug Fix 1
- * Feature 2 or Bug Fix 2
- * Feature n or Bug Fix n
+ * Effective matching
+ * User Database
+ * Better login features
 
 ## Work Summary (Developer Facing)
-Provide a one paragraph synposis of what your team accomplished this sprint. Don't repeat the "What's New" list of features. Instead, help the instructor understand how you went about the work described there, any barriers you overcame, and any significant learnings for your team.
+During this sprint, we focused heavily on the main compnent of our app: matching. Although we had a matching algorithm already created last sprint, we had nothing to put in it. Now, we are able to create an infinite amoount of questions, choose an answer style, and have numerical values assigned to those answers in order to computate compatibility. Additionally, we knew that we needed a way to store user data. Whether this is storing their emails, matches, or even just their answers, our new database gives us a reference pont and something we can go back to. 
 
 ## Unfinished Work
-If applicable, explain the work you did not finish in this sprint. For issues/user stories in the current sprint that have not been closed, (a) any progress toward completion of the issues has been clearly tracked (by checking the checkboxes of  acceptance criteria), (b) a comment has been added to the issue to explain why the issue could not be completed (e.g., "we ran out of time" or "we did not anticipate it would be so much work"), and (c) the issue is added to a subsequent sprint, so that it can be addressed later.
+One thing we really wanted to get done this sprint was have the ability to actually use the UI to answer questions. the backend elemnts are are functional and effective, but we were having issues updating the UI. Right now we're sitting at about 75% complettion. WIth the updated UI we would be at 90. That's why it's a major goal for our next sprint. 
 
 ## Completed Issues/User Stories
 Here are links to the issues that we completed in this sprint:
@@ -60,3 +60,4 @@ Here are changes we plan to implement in the next sprint:
    * Item 1
    * Item 2
    * Item x
+
