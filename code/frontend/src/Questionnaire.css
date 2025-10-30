@@ -1,0 +1,38 @@
+.questionnaire {
+  max-width: 720px;
+  margin: 12px auto;
+  padding: 12px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+}
+.questionnaire-form .form-row {
+  display: flex;
+  align-items: center;
+  margin: 8px 0;
+}
+.questionnaire-form label {
+  width: 240px;
+  font-weight: 600;
+}
+/* show a red star for required questions */
+.required {
+  color: #c0392b;
+  margin-left: 6px;
+}
+.questionnaire-form input, .questionnaire-form select {
+  flex: 1;
+  padding: 6px 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+.questionnaire-form button {
+  background: #4a5c4a;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+}
+.questionnaire .status {
+  margin-left: 12px;
+  font-style: italic;
+}
