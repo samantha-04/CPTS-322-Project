@@ -14,8 +14,8 @@ One thing we really wanted to get done this sprint was have the ability to actua
 ## Completed Issues/User Stories
 Here are links to the issues that we completed in this sprint:
 
- * URL of issue 1
- * URL of issue 2
+ * https://github.com/samantha-04/CPTS-322-Project/issues/24
+ * https://github.com/samantha-04/CPTS-322-Project/issues/18
  * URL of issue n
 
  Desirables (Remove this section when you save the file):
@@ -29,7 +29,7 @@ Here are links to the issues that we completed in this sprint:
  ## Incomplete Issues/User Stories
  Here are links to issues we worked on but did not complete in this sprint:
  
- * URL of issue 1 <<One sentence explanation of why issue was not completed>>
+ * https://github.com/samantha-04/CPTS-322-Project/issues/31 We ran into issues with running the local host whenver we tried to update the code
  * URL of issue 2 <<One sentence explanation of why issue was not completed>>
  * URL of issue n <<One sentence explanation of why issue was not completed>>
  
@@ -41,23 +41,28 @@ Here are links to the issues that we completed in this sprint:
 
 ## Code Files for Review
 Please review the following code files, which were actively developed during this sprint, for quality:
- * [Name of code file 1](https://github.com/your_repo/file_extension)
- * [Name of code file 2](https://github.com/your_repo/file_extension)
- * [Name of code file 3](https://github.com/your_repo/file_extension)
+ * [User.py](https://github.com/samantha-04/CPTS-322-Project/blob/main/code/backend/User.py)
+ * [survey_answers.csv](https://github.com/samantha-04/CPTS-322-Project/blob/main/code/backend/data/survey_answers.csv)
+ * [Login2.jsx](https://github.com/samantha-04/CPTS-322-Project/blob/main/code/frontend/src/Login%202.jsx)
+ * [Questionnaire.css] (https://github.com/samantha-04/CPTS-322-Project/blob/main/code/frontend/src/Questionnaire.css)
+ * [Questionnaire.jsx] (https://github.com/samantha-04/CPTS-322-Project/blob/main/code/frontend/src/Questionnaire.jsx)
+ * [Registration2.jsx] (https://github.com/samantha-04/CPTS-322-Project/blob/main/code/frontend/src/Registration%202.jsx)
+ * [index2.jsx] (https://github.com/samantha-04/CPTS-322-Project/blob/main/code/frontend/src/Registration%202.jsx)
  
 ## Retrospective Summary
 Here's what went well:
-  * Item 1
-  * Item 2
-  * Item x
+  * coming up with numerical values and assigning them to answers
+  * storing in user database
+  * strong computations
+  * 
  
 Here's what we'd like to improve:
-   * Item 1
-   * Item 2
-   * Item x
+   * Better time managment with completeing sprint issues
+   * Cleaner and more effective UI
+
   
 Here are changes we plan to implement in the next sprint:
-   * Item 1
-   * Item 2
-   * Item x
+   * Complete UI
+   * 
+
 
