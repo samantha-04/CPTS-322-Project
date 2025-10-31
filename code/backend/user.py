@@ -21,5 +21,7 @@ class User:
         """
         return self.password == password  # In final application, use hashed password comparison
     
-
+    
+    def questionAnswer(self, question):
+        self.question = question
    
