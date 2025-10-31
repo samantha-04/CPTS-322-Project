@@ -16,7 +16,7 @@ Here are links to the issues that we completed in this sprint:
 
  * https://github.com/samantha-04/CPTS-322-Project/issues/24
  * https://github.com/samantha-04/CPTS-322-Project/issues/18
- * URL of issue n
+ * https://github.com/samantha-04/CPTS-322-Project/issues/28
 
  Desirables (Remove this section when you save the file):
   * Each issue should be assigned to a milestone
@@ -54,15 +54,13 @@ Here's what went well:
   * coming up with numerical values and assigning them to answers
   * storing in user database
   * strong computations
-  * 
+  * Finding the most stable matches
  
 Here's what we'd like to improve:
    * Better time managment with completeing sprint issues
    * Cleaner and more effective UI
-
+   * Algorithm Performance
   
 Here are changes we plan to implement in the next sprint:
    * Complete UI
-   * 
-
-
+   * Integration of C++ into Matching module
