@@ -1,14 +1,14 @@
 from math import sqrt, pow
+from numpy import array
 
 
 # Finds dot prod. between 2 vectors
 # O(n)
-def __FindDotProduct(p1: list[float], p2: list[float]) -> float:
+def __FindDotProduct(p1, p2) -> float:
     """
     Calculates the dot product between two given vectors.
     Requires two lists as input.
     """
-
     if len(p1) == len(p2):
         sum = 0
 
@@ -22,12 +22,11 @@ def __FindDotProduct(p1: list[float], p2: list[float]) -> float:
 
 # Finds unit vector
 # O(n)
-def __FindUnitVector(v: list) -> list[float]:
+def __FindUnitVector(v):
     """
     Calculates the unit vector for a given vector.
     Requires a list as input.
     """
-
     res = []
     magnitude = 0
 
@@ -43,8 +42,10 @@ def __FindUnitVector(v: list) -> list[float]:
     return res
 
 
-def Match(user1, user2):
-    return __FindDotProduct(__FindUnitVector(user1), __FindUnitVector(user2))
+def Match(user1: list[float], user2: list[float]):
+    return float(
+        __FindDotProduct(__FindUnitVector(array(user1)), __FindUnitVector(array(user2)))
+    )
 
 
 """
