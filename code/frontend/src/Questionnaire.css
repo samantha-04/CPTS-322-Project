@@ -11,27 +11,63 @@
   margin: 8px 0;
 }
 .questionnaire-form label {
-  width: 240px;
+  max-width: 720px;
+  margin: 12px auto;
+  padding: 0; /* we'll use inner layout for padding */
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  height: 70vh; /* allow scrolling area */
+  color: #c0392b;
+}
+.questionnaire-form {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.questionnaire-body {
+  padding: 12px;
+  overflow-y: auto;
+  flex: 1 1 auto;
+}
+
+.form-row {
+  display: flex;
+  align-items: center;
+  margin: 12px 0;
+}
+
+.form-row label {
+  width: 260px;
   font-weight: 600;
 }
-/* show a red star for required questions */
-.required {
-  color: #c0392b;
-  margin-left: 6px;
-}
-.questionnaire-form input, .questionnaire-form select {
+
+.form-row input, .form-row select {
   flex: 1;
-  padding: 6px 8px;
+  padding: 8px 10px;
   border-radius: 6px;
   border: 1px solid #ccc;
 }
-.questionnaire-form button {
+
+.questionnaire-footer {
+  padding: 10px 12px;
+  border-top: 1px solid #eee;
+  background: #fafafa;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.questionnaire-footer button {
   background: #4a5c4a;
   color: white;
   border: none;
-  padding: 8px 12px;
+  padding: 10px 16px;
   border-radius: 6px;
 }
+
 .questionnaire .status {
   margin-left: 12px;
   font-style: italic;

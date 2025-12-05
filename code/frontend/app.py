@@ -17,7 +17,15 @@ def serve(path):
 # API routes
 @app.route('/api/hello')
 def hello():
-    return jsonify({'message': 'Hello from Flask front end!'})
+    # include the build/version string read from VERSION file so we can
+    # demonstrate application updates without changing code.
+    version = 'unknown'
+    try:
+        with open(os.path.join(os.path.dirname(__file__), 'VERSION'), 'r', encoding='utf-8') as f:
+            version = f.read().strip()
+    except Exception:
+        pass
+    return jsonify({'message': 'Hello from Flask front end!', 'version': version})
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8000, debug=True)

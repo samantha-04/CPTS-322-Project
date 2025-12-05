@@ -1,22 +1,22 @@
 import React, { useState } from 'react';
-import RoommateProfile from './RoommateProfile';
+import Home from './Home';
 import Registration from './Registration';
 import Login from './Login';
 
 function App() {
-  const [currentView, setCurrentView] = useState('registration'); // 'registration', 'login', 'profile'
+  const [currentView, setCurrentView] = useState('registration'); // 'registration', 'login', 'home'
   const [user, setUser] = useState(null);
 
   const handleRegistration = (userData) => {
     console.log('Registration data:', userData);
     setUser(userData);
-    setCurrentView('profile');
+    setCurrentView('home');
   };
 
   const handleLogin = (userData) => {
     console.log('Login data:', userData);
     setUser(userData);
-    setCurrentView('profile');
+    setCurrentView('home');
   };
 
   const handleSwitchToLogin = () => {
@@ -48,25 +48,8 @@ function App() {
         />
       )}
       
-      {currentView === 'profile' && user && (
-        <div>
-          <div style={{ position: 'absolute', top: '20px', right: '20px' }}>
-            <button 
-              onClick={handleLogout}
-              style={{
-                background: '#4a5c4a',
-                color: 'white',
-                border: 'none',
-                padding: '8px 16px',
-                borderRadius: '6px',
-                cursor: 'pointer'
-              }}
-            >
-              Logout
-            </button>
-          </div>
-          <RoommateProfile />
-        </div>
+      {currentView === 'home' && user && (
+        <Home user={user} onLogout={handleLogout} />
       )}
     </div>
   );

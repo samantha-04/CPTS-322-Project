@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
 import './RoommateProfile.css';
+import Questionnaire from './Questionnaire';
 
 const RoommateProfile = ({ initialName = "Your Name" }) => {
   const [name, setName] = useState(initialName);
@@ -51,7 +52,7 @@ const RoommateProfile = ({ initialName = "Your Name" }) => {
 
   return (
     <div className="roommate-container">
-      <h1 className="roommate-title">Roommate</h1>
+      <h1 className="roommate-title">Roommate Finder</h1>
       
       <div className="profile-card">
         <div className="profile-header">

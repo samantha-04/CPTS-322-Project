@@ -3,8 +3,36 @@ import './Questionnaire.css';
 
 const API_BASE = 'http://localhost:5646';
 
+// Fallback questions if backend is unavailable
+const FALLBACK_QUESTIONS = {
+  "q_smoking": {"type": "yes_no", "label": "Do you smoke?", "weight": 1.0},
+  "q_pets": {"type": "yes_no", "label": "Do you have pets?", "weight": 1.0},
+  "q_clean_freq": {"type": "frequency_4", "label": "How often do you clean?", "weight": 1.0},
+  "q_social": {"type": "likert_5", "label": "I like having friends over.", "weight": 1.0},
+  "q_noise": {"type": "likert_5", "label": "I don't mind loud music.", "weight": 1.0},
+  "q_quiet_hours": {"type": "yes_no", "label": "Should we have quiet hours?", "weight": 1.0},
+  "q_shared_food": {"type": "yes_no", "label": "Are you ok with shared groceries?", "weight": 1.0},
+  "q_lifestyle": {"type": null, "label": "Describe your lifestyle (optional).", "weight": 0.5},
+  "q_sleep_schedule": {"type": "likert_5", "label": "I prefer to go to bed early.", "weight": 1.0},
+  "q_noise_tolerance": {"type": "likert_5", "label": "I am comfortable with background noise.", "weight": 1.0},
+  "q_alcohol": {"type": "yes_no", "label": "Are you okay with alcohol being consumed in the home?", "weight": 1.0},
+  "q_share_chores": {"type": "yes_no", "label": "Are you willing to share chores fairly?", "weight": 1.0},
+  "q_temperature_pref": {"type": "likert_5", "label": "I prefer a cooler apartment (lower thermostat).", "weight": 1.0},
+  "q_vehicle": {"type": null, "label": "Do you have a vehicle (optional comments)?", "weight": 0.5},
+  "q_overnight_guests": {"type": "frequency_4", "label": "How often do you have overnight guests?", "weight": 1.0},
+  "q_shared_groceries": {"type": "likert_5", "label": "I am open to sharing kitchen appliances and cookware.", "weight": 0.8},
+  "q_work_from_home": {"type": "frequency_4", "label": "How often do you work/study from home?", "weight": 0.9},
+  "q_morning_routine": {"type": "likert_5", "label": "I need the bathroom for a long time in the morning.", "weight": 0.7},
+  "q_social_events": {"type": "frequency_4", "label": "How often do you attend social events outside the home?", "weight": 0.8},
+  "q_tv_music": {"type": "likert_5", "label": "I often play music or watch TV in common areas.", "weight": 0.9},
+  "q_visitors_notice": {"type": "yes_no", "label": "Should roommates give advance notice before having visitors?", "weight": 1.0},
+  "q_decorating": {"type": "likert_5", "label": "I like to personalize and decorate shared spaces.", "weight": 0.6},
+  "q_conflict_style": {"type": "likert_5", "label": "I prefer to address conflicts directly rather than avoid them.", "weight": 1.0},
+  "q_budget_conscious": {"type": "likert_5", "label": "I am budget-conscious with utilities and shared expenses.", "weight": 0.9}
+};
+
 const Questionnaire = ({ onSubmitted }) => {
-  const [questions, setQuestions] = useState({});
+  const [questions, setQuestions] = useState(FALLBACK_QUESTIONS);
   const [answers, setAnswers] = useState({});
   const [userId, setUserId] = useState('');
   const [status, setStatus] = useState(null);
@@ -15,7 +43,8 @@ const Questionnaire = ({ onSubmitted }) => {
       .then(data => {
         setQuestions(data);
       }).catch(err => {
-        console.error('Failed to fetch questions', err);
+        console.error('Failed to fetch questions, using fallback', err);
+        // Keep using fallback questions
       });
   }, []);
 

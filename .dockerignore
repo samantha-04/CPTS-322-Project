@@ -46,4 +46,7 @@ test/
 .env
 .env.local
 *.log
-
+.venv
+venv/
+Dockerfile
+docker-compose.yml

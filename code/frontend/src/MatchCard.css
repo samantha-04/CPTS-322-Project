@@ -1,0 +1,155 @@
+.match-card {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+  border: 2px solid transparent;
+}
+
+.match-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.match-card.accepted {
+  border-color: #4caf50;
+}
+
+.match-card.denied {
+  border-color: #f44336;
+  opacity: 0.7;
+}
+
+.match-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.match-avatar {
+  flex-shrink: 0;
+}
+
+.match-avatar-img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.match-avatar-placeholder {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #4a5c4a;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.match-info {
+  flex: 1;
+}
+
+.match-name {
+  margin: 0 0 0.25rem 0;
+  color: #333;
+  font-size: 1.25rem;
+}
+
+.match-details {
+  margin: 0;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.match-compatibility {
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.compatibility-score {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #4a5c4a;
+  line-height: 1;
+}
+
+.compatibility-label {
+  display: block;
+  font-size: 0.75rem;
+  color: #666;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.match-bio {
+  padding: 1rem;
+  background: #f9f9f9;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.match-bio p {
+  margin: 0;
+  color: #555;
+  line-height: 1.5;
+}
+
+.match-actions {
+  display: flex;
+  gap: 1rem;
+}
+
+.match-actions button {
+  flex: 1;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-accept {
+  background: #4caf50;
+  color: white;
+}
+
+.btn-accept:hover {
+  background: #45a049;
+  transform: scale(1.02);
+}
+
+.btn-deny {
+  background: #f44336;
+  color: white;
+}
+
+.btn-deny:hover {
+  background: #da190b;
+  transform: scale(1.02);
+}
+
+.match-status {
+  text-align: center;
+  padding: 0.75rem;
+  border-radius: 8px;
+  font-weight: 600;
+}
+
+.match-status.accepted {
+  background: #e8f5e9;
+  color: #2e7d32;
+}
+
+.match-status.denied {
+  background: #ffebee;
+  color: #c62828;
+}
