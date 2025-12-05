@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import './Login.css';
 
+const API_BASE = 'http://localhost:5646';
+
 const Login = ({ onLogin, onSwitchToRegister }) => {
   const [formData, setFormData] = useState({
     email: '',
@@ -52,21 +54,33 @@ const Login = ({ onLogin, onSwitchToRegister }) => {
     }
 
     setIsLoading(true);
+    setErrors({});
     
     try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
-      if (onLogin) {
-        onLogin({
+      const response = await fetch(`${API_BASE}/api/auth/login`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
           email: formData.email,
           password: formData.password
-        });
-      }
+        })
+      });
       
-      console.log('Login successful:', { email: formData.email });
+      const data = await response.json();
+      
+      if (response.ok && data.user) {
+        console.log('Login successful:', data.user);
+        if (onLogin) {
+          onLogin(data.user);
+        }
+      } else {
+        setErrors({ submit: data.message || 'Login failed. Please check your credentials.' });
+      }
     } catch (error) {
-      setErrors({ submit: 'Login failed. Please check your credentials.' });
+      console.error('Login error:', error);
+      setErrors({ submit: 'Network error. Please check if the server is running.' });
     } finally {
       setIsLoading(false);
     }

@@ -3,16 +3,27 @@ import RoommateProfile from './RoommateProfile';
 import MatchList from './MatchList';
 import './Home.css';
 
-const Home = ({ user, onLogout }) => {
+const Home = ({ user, onLogout, onUserUpdate }) => {
   const [activeTab, setActiveTab] = useState('matches'); // 'matches', 'profile', 'settings'
+  const [currentUser, setCurrentUser] = useState(user);
+
+  const handleProfileUpdate = (updatedUser) => {
+    setCurrentUser(updatedUser);
+    if (onUserUpdate) {
+      onUserUpdate(updatedUser);
+    }
+  };
 
   return (
     <div className="home-container">
       <header className="home-header">
         <h1 className="home-title">Roommate Finder</h1>
-        <button onClick={onLogout} className="logout-btn">
-          Logout
-        </button>
+        <div className="header-user">
+          <span className="user-greeting">Welcome, {currentUser?.name || currentUser?.email?.split('@')[0] || 'User'}</span>
+          <button onClick={onLogout} className="logout-btn">
+            Logout
+          </button>
+        </div>
       </header>
 
       <nav className="home-nav">
@@ -38,17 +49,28 @@ const Home = ({ user, onLogout }) => {
 
       <main className="home-content">
         {activeTab === 'matches' && (
-          <MatchList userId={user?.email || user?.name} />
+          <MatchList userId={currentUser?.email} />
         )}
         
         {activeTab === 'profile' && (
-          <RoommateProfile />
+          <RoommateProfile 
+            user={currentUser} 
+            onProfileUpdate={handleProfileUpdate}
+          />
         )}
         
         {activeTab === 'settings' && (
           <div className="settings-panel">
             <h2>Settings</h2>
-            <p>Account settings and preferences coming soon...</p>
+            <div className="settings-section">
+              <h3>Account Information</h3>
+              <p><strong>Email:</strong> {currentUser?.email}</p>
+              <p><strong>Survey Status:</strong> {currentUser?.surveyCompleted ? '✓ Completed' : '⚠ Not completed'}</p>
+            </div>
+            <div className="settings-section">
+              <h3>Preferences</h3>
+              <p>Additional account settings and preferences coming soon...</p>
+            </div>
           </div>
         )}
       </main>

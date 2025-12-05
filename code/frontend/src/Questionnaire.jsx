@@ -12,13 +12,11 @@ const FALLBACK_QUESTIONS = {
   "q_noise": {"type": "likert_5", "label": "I don't mind loud music.", "weight": 1.0},
   "q_quiet_hours": {"type": "yes_no", "label": "Should we have quiet hours?", "weight": 1.0},
   "q_shared_food": {"type": "yes_no", "label": "Are you ok with shared groceries?", "weight": 1.0},
-  "q_lifestyle": {"type": null, "label": "Describe your lifestyle (optional).", "weight": 0.5},
   "q_sleep_schedule": {"type": "likert_5", "label": "I prefer to go to bed early.", "weight": 1.0},
   "q_noise_tolerance": {"type": "likert_5", "label": "I am comfortable with background noise.", "weight": 1.0},
   "q_alcohol": {"type": "yes_no", "label": "Are you okay with alcohol being consumed in the home?", "weight": 1.0},
   "q_share_chores": {"type": "yes_no", "label": "Are you willing to share chores fairly?", "weight": 1.0},
   "q_temperature_pref": {"type": "likert_5", "label": "I prefer a cooler apartment (lower thermostat).", "weight": 1.0},
-  "q_vehicle": {"type": null, "label": "Do you have a vehicle (optional comments)?", "weight": 0.5},
   "q_overnight_guests": {"type": "frequency_4", "label": "How often do you have overnight guests?", "weight": 1.0},
   "q_shared_groceries": {"type": "likert_5", "label": "I am open to sharing kitchen appliances and cookware.", "weight": 0.8},
   "q_work_from_home": {"type": "frequency_4", "label": "How often do you work/study from home?", "weight": 0.9},
@@ -31,14 +29,14 @@ const FALLBACK_QUESTIONS = {
   "q_budget_conscious": {"type": "likert_5", "label": "I am budget-conscious with utilities and shared expenses.", "weight": 0.9}
 };
 
-const Questionnaire = ({ onSubmitted }) => {
+const Questionnaire = ({ userId, onSubmitted }) => {
   const [questions, setQuestions] = useState(FALLBACK_QUESTIONS);
   const [answers, setAnswers] = useState({});
-  const [userId, setUserId] = useState('');
   const [status, setStatus] = useState(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
-    fetch(`${API_BASE}/questions`)
+    fetch(`${API_BASE}/api/questions`)
       .then(res => res.json())
       .then(data => {
         setQuestions(data);
@@ -54,10 +52,12 @@ const Questionnaire = ({ onSubmitted }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
     if (!userId) {
-      setStatus('Please enter a user id');
+      setStatus('Error: No user ID provided. Please log in again.');
       return;
     }
+    
     // Validate that all questions have answers
     const missing = [];
     Object.keys(questions).forEach((k) => {
@@ -70,11 +70,13 @@ const Questionnaire = ({ onSubmitted }) => {
     });
 
     if (missing.length > 0) {
-      setStatus(`Please answer all questions. Missing: ${missing.join(', ')}`);
+      setStatus(`Please answer all questions. Missing ${missing.length} answer(s).`);
       return;
     }
 
+    setIsSubmitting(true);
     setStatus('Submitting...');
+    
     try {
       const res = await fetch(`${API_BASE}/api/survey/submit`, {
         method: 'POST',
@@ -83,64 +85,100 @@ const Questionnaire = ({ onSubmitted }) => {
       });
       const json = await res.json();
       if (res.ok) {
-        setStatus('Saved successfully!');
-        if (onSubmitted) onSubmitted(userId);
+        setStatus('Saved successfully! Your matches are being calculated.');
+        if (onSubmitted) {
+          setTimeout(() => onSubmitted(userId), 1500);
+        }
       } else {
-        setStatus(json.message || 'Error');
+        setStatus(json.message || 'Error saving answers');
       }
     } catch (err) {
       console.error(err);
-      setStatus('Network error');
+      setStatus('Network error. Please try again.');
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
+  const answeredCount = Object.keys(answers).filter(k => answers[k] && String(answers[k]).trim() !== '').length;
+  const totalQuestions = Object.keys(questions).length;
+  const progress = Math.round((answeredCount / totalQuestions) * 100);
+
   return (
     <div className="questionnaire">
-      <h3>Questionnaire</h3>
+      <div className="progress-bar-container">
+        <div className="progress-bar" style={{ width: `${progress}%` }}></div>
+        <span className="progress-text">{answeredCount} of {totalQuestions} questions answered</span>
+      </div>
+      
       <form onSubmit={handleSubmit} className="questionnaire-form">
-        <div className="form-row">
-          <label>User ID</label>
-          <input value={userId} onChange={e => setUserId(e.target.value)} placeholder="unique-id" />
-        </div>
-
-        {Object.entries(questions).map(([key, meta]) => (
-          <div className="form-row" key={key}>
-            <label>{meta.label || key} <span className="required">*</span></label>
+        {Object.entries(questions).map(([key, meta], index) => (
+          <div className={`form-row ${answers[key] ? 'answered' : ''}`} key={key}>
+            <label>
+              <span className="question-number">{index + 1}.</span>
+              {meta.label || key} 
+              <span className="required">*</span>
+            </label>
             {meta.type === 'yes_no' && (
-              <select value={answers[key] || ''} onChange={e => handleChange(key, e.target.value)}>
-                <option value="">--</option>
-                <option value="Yes">Yes</option>
-                <option value="No">No</option>
-              </select>
+              <div className="button-group">
+                <button
+                  type="button"
+                  className={`option-btn ${answers[key] === 'Yes' ? 'selected' : ''}`}
+                  onClick={() => handleChange(key, 'Yes')}
+                >
+                  Yes
+                </button>
+                <button
+                  type="button"
+                  className={`option-btn ${answers[key] === 'No' ? 'selected' : ''}`}
+                  onClick={() => handleChange(key, 'No')}
+                >
+                  No
+                </button>
+              </div>
             )}
             {meta.type === 'likert_5' && (
               <select value={answers[key] || ''} onChange={e => handleChange(key, e.target.value)}>
-                <option value="">--</option>
-                <option>Strongly Disagree</option>
-                <option>Disagree</option>
-                <option>Neutral</option>
-                <option>Agree</option>
-                <option>Strongly Agree</option>
+                <option value="">-- Select --</option>
+                <option value="Strongly Disagree">Strongly Disagree</option>
+                <option value="Disagree">Disagree</option>
+                <option value="Neutral">Neutral</option>
+                <option value="Agree">Agree</option>
+                <option value="Strongly Agree">Strongly Agree</option>
               </select>
             )}
             {meta.type === 'frequency_4' && (
               <select value={answers[key] || ''} onChange={e => handleChange(key, e.target.value)}>
-                <option value="">--</option>
-                <option>Never</option>
-                <option>Sometimes</option>
-                <option>Often</option>
-                <option>Always</option>
+                <option value="">-- Select --</option>
+                <option value="Never">Never</option>
+                <option value="Sometimes">Sometimes</option>
+                <option value="Often">Often</option>
+                <option value="Always">Always</option>
               </select>
             )}
             {!meta.type && (
-              <input value={answers[key] || ''} onChange={e => handleChange(key, e.target.value)} />
+              <input 
+                value={answers[key] || ''} 
+                onChange={e => handleChange(key, e.target.value)} 
+                placeholder="Enter your answer"
+              />
             )}
           </div>
         ))}
 
-        <div className="form-row">
-          <button type="submit">Submit Answers</button>
-          {status && <span className="status">{status}</span>}
+        <div className="form-actions">
+          <button 
+            type="submit" 
+            className={`submit-btn ${isSubmitting ? 'submitting' : ''}`}
+            disabled={isSubmitting}
+          >
+            {isSubmitting ? 'Saving...' : 'Submit Answers'}
+          </button>
+          {status && (
+            <span className={`status ${status.includes('success') ? 'success' : status.includes('Error') || status.includes('Missing') ? 'error' : ''}`}>
+              {status}
+            </span>
+          )}
         </div>
       </form>
     </div>

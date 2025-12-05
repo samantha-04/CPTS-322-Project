@@ -29,7 +29,11 @@ function App() {
 
   const handleLogout = () => {
     setUser(null);
-    setCurrentView('registration');
+    setCurrentView('login');
+  };
+
+  const handleUserUpdate = (updatedUser) => {
+    setUser(updatedUser);
   };
 
   return (
@@ -49,7 +53,11 @@ function App() {
       )}
       
       {currentView === 'home' && user && (
-        <Home user={user} onLogout={handleLogout} />
+        <Home 
+          user={user} 
+          onLogout={handleLogout}
+          onUserUpdate={handleUserUpdate}
+        />
       )}
     </div>
   );

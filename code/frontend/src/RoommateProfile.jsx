@@ -1,18 +1,34 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import './RoommateProfile.css';
 import Questionnaire from './Questionnaire';
 
-const RoommateProfile = ({ initialName = "Your Name" }) => {
-  const [name, setName] = useState(initialName);
+const API_BASE = 'http://localhost:5646';
+
+const RoommateProfile = ({ user, onProfileUpdate }) => {
+  const [name, setName] = useState(user?.name || 'Your Name');
   const [profileImage, setProfileImage] = useState(null);
   const [isEditingName, setIsEditingName] = useState(false);
   const [bioData, setBioData] = useState({
-    age: '',
-    major: '',
-    pets: null, // null, true, or false
-    cleanliness: 5
+    age: user?.profile?.age || '',
+    major: user?.profile?.major || '',
+    bio: user?.profile?.bio || ''
   });
+  const [saving, setSaving] = useState(false);
+  const [saveMessage, setSaveMessage] = useState(null);
+  const [showQuestionnaire, setShowQuestionnaire] = useState(!user?.surveyCompleted);
   const fileInputRef = useRef(null);
+
+  useEffect(() => {
+    if (user) {
+      setName(user.name || 'Your Name');
+      setBioData({
+        age: user.profile?.age || '',
+        major: user.profile?.major || '',
+        bio: user.profile?.bio || ''
+      });
+      setShowQuestionnaire(!user.surveyCompleted);
+    }
+  }, [user]);
 
   const handleNameClick = () => {
     setIsEditingName(true);
@@ -20,11 +36,13 @@ const RoommateProfile = ({ initialName = "Your Name" }) => {
 
   const handleNameBlur = () => {
     setIsEditingName(false);
+    saveProfile();
   };
 
   const handleNameKeyPress = (e) => {
     if (e.key === 'Enter') {
       setIsEditingName(false);
+      saveProfile();
     }
   };
 
@@ -50,10 +68,56 @@ const RoommateProfile = ({ initialName = "Your Name" }) => {
     }));
   };
 
+  const saveProfile = async () => {
+    if (!user?.email) return;
+    
+    setSaving(true);
+    setSaveMessage(null);
+    
+    try {
+      const response = await fetch(`${API_BASE}/api/user/${encodeURIComponent(user.email)}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: name,
+          profile: {
+            age: bioData.age ? parseInt(bioData.age) : null,
+            major: bioData.major,
+            bio: bioData.bio
+          }
+        })
+      });
+      
+      const data = await response.json();
+      
+      if (response.ok) {
+        setSaveMessage('Profile saved!');
+        if (onProfileUpdate && data.user) {
+          onProfileUpdate(data.user);
+        }
+      } else {
+        setSaveMessage(data.message || 'Failed to save profile');
+      }
+    } catch (error) {
+      console.error('Error saving profile:', error);
+      setSaveMessage('Network error. Profile saved locally.');
+    } finally {
+      setSaving(false);
+      setTimeout(() => setSaveMessage(null), 3000);
+    }
+  };
+
+  const handleQuestionnaireSubmitted = (submittedUserId) => {
+    setShowQuestionnaire(false);
+    if (onProfileUpdate && user) {
+      onProfileUpdate({ ...user, surveyCompleted: true });
+    }
+  };
+
   return (
     <div className="roommate-container">
-      <h1 className="roommate-title">Roommate Finder</h1>
-      
       <div className="profile-card">
         <div className="profile-header">
           <div className="avatar-container">
@@ -99,6 +163,10 @@ const RoommateProfile = ({ initialName = "Your Name" }) => {
               {name}
             </h2>
           )}
+          
+          {user?.email && (
+            <p className="profile-email">{user.email}</p>
+          )}
         </div>
         
         <div className="bio-section">
@@ -110,6 +178,7 @@ const RoommateProfile = ({ initialName = "Your Name" }) => {
               type="number"
               value={bioData.age}
               onChange={(e) => handleBioChange('age', e.target.value)}
+              onBlur={saveProfile}
               className="bio-input"
               placeholder="Enter your age"
               min="18"
@@ -123,50 +192,57 @@ const RoommateProfile = ({ initialName = "Your Name" }) => {
               type="text"
               value={bioData.major}
               onChange={(e) => handleBioChange('major', e.target.value)}
+              onBlur={saveProfile}
               className="bio-input"
               placeholder="Enter your major"
             />
           </div>
           
           <div className="bio-field">
-            <label className="bio-label">Pets</label>
-            <div className="radio-group">
-              <label className="radio-option">
-                <input
-                  type="radio"
-                  name="pets"
-                  checked={bioData.pets === true}
-                  onChange={() => handleBioChange('pets', true)}
-                />
-                <span>Yes</span>
-              </label>
-              <label className="radio-option">
-                <input
-                  type="radio"
-                  name="pets"
-                  checked={bioData.pets === false}
-                  onChange={() => handleBioChange('pets', false)}
-                />
-                <span>No</span>
-              </label>
-            </div>
+            <label className="bio-label">Bio</label>
+            <textarea
+              value={bioData.bio}
+              onChange={(e) => handleBioChange('bio', e.target.value)}
+              onBlur={saveProfile}
+              className="bio-input bio-textarea"
+              placeholder="Tell potential roommates about yourself..."
+              rows="3"
+            />
           </div>
           
-          <div className="bio-field">
-            <label className="bio-label">Cleanliness (1-10)</label>
-            <div className="slider-container">
-              <input
-                type="range"
-                min="1"
-                max="10"
-                value={bioData.cleanliness}
-                onChange={(e) => handleBioChange('cleanliness', parseInt(e.target.value))}
-                className="cleanliness-slider"
-              />
-              <span className="slider-value">{bioData.cleanliness}</span>
+          {saveMessage && (
+            <div className={`save-message ${saveMessage.includes('error') || saveMessage.includes('Failed') ? 'error' : 'success'}`}>
+              {saving ? 'Saving...' : saveMessage}
             </div>
-          </div>
+          )}
         </div>
+      </div>
+      
+      {/* Questionnaire Section */}
+      <div className="questionnaire-section">
+        <div className="questionnaire-header">
+          <h3>Roommate Preferences Questionnaire</h3>
+          {user?.surveyCompleted && !showQuestionnaire && (
+            <button 
+              className="edit-questionnaire-btn"
+              onClick={() => setShowQuestionnaire(true)}
+            >
+              Edit Answers
+            </button>
+          )}
+        </div>
+        
+        {showQuestionnaire ? (
+          <Questionnaire 
+            userId={user?.email} 
+            onSubmitted={handleQuestionnaireSubmitted}
+          />
+        ) : (
+          <div className="questionnaire-complete">
+            <span className="check-icon">✓</span>
+            <p>Questionnaire completed! Your matches are being calculated based on your preferences.</p>
+          </div>
+        )}
       </div>
     </div>
   );

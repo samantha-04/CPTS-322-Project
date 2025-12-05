@@ -1,25 +1,47 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import MatchCard from './MatchCard';
 import './MatchList.css';
+
+const API_BASE = 'http://localhost:5646';
 
 const MatchList = ({ userId }) => {
   const [matches, setMatches] = useState([]);
   const [filter, setFilter] = useState('all'); // 'all', 'pending', 'accepted', 'denied'
   const [sortBy, setSortBy] = useState('compatibility'); // 'compatibility', 'name'
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [surveyRequired, setSurveyRequired] = useState(false);
 
-  // Mock data - replace with API call to backend when ready
-  useEffect(() => {
-    loadMatches();
-  }, [userId]);
-
-  const loadMatches = () => {
+  const loadMatches = useCallback(async () => {
+    if (!userId) return;
+    
     setLoading(true);
-    // Simulated matches - in real app, fetch from backend API
-    setTimeout(() => {
-      const mockMatches = [
+    setError(null);
+    setSurveyRequired(false);
+    
+    try {
+      const response = await fetch(`${API_BASE}/api/matches/${encodeURIComponent(userId)}`);
+      const data = await response.json();
+      
+      if (response.ok) {
+        setMatches(data.matches || []);
+        if (data.matches && data.matches.length === 0) {
+          setError('No matches found yet. More users need to complete the questionnaire.');
+        }
+      } else if (response.status === 404) {
+        setSurveyRequired(true);
+        setMatches([]);
+      } else {
+        setError(data.message || 'Failed to load matches');
+        setMatches([]);
+      }
+    } catch (err) {
+      console.error('Error loading matches:', err);
+      setError('Network error. Please check if the server is running.');
+      // Fall back to mock data for demo purposes
+      setMatches([
         {
-          id: 1,
+          id: 'demo1',
           name: 'Alice Johnson',
           age: 21,
           major: 'Computer Science',
@@ -29,7 +51,7 @@ const MatchList = ({ userId }) => {
           status: 'pending'
         },
         {
-          id: 2,
+          id: 'demo2',
           name: 'Bob Smith',
           age: 22,
           major: 'Engineering',
@@ -39,7 +61,7 @@ const MatchList = ({ userId }) => {
           status: 'pending'
         },
         {
-          id: 3,
+          id: 'demo3',
           name: 'Carol Davis',
           age: 20,
           major: 'Biology',
@@ -48,17 +70,21 @@ const MatchList = ({ userId }) => {
           profileImage: null,
           status: 'pending'
         }
-      ];
-      setMatches(mockMatches);
+      ]);
+    } finally {
       setLoading(false);
-    }, 500);
-  };
+    }
+  }, [userId]);
+
+  useEffect(() => {
+    loadMatches();
+  }, [loadMatches]);
 
   const handleAccept = (matchId) => {
     setMatches(prev => 
       prev.map(m => m.id === matchId ? { ...m, status: 'accepted' } : m)
     );
-    // TODO: Call backend API to save acceptance
+    // TODO: Add API call to save acceptance when backend supports it
     console.log('Accepted match:', matchId);
   };
 
@@ -66,7 +92,7 @@ const MatchList = ({ userId }) => {
     setMatches(prev => 
       prev.map(m => m.id === matchId ? { ...m, status: 'denied' } : m)
     );
-    // TODO: Call backend API to save denial
+    // TODO: Add API call to save denial when backend supports it
     console.log('Denied match:', matchId);
   };
 
@@ -81,6 +107,22 @@ const MatchList = ({ userId }) => {
     }
     return a.name.localeCompare(b.name);
   });
+
+  if (surveyRequired) {
+    return (
+      <div className="match-list-container">
+        <div className="match-list-header">
+          <h2>Your Matches</h2>
+        </div>
+        <div className="survey-required">
+          <div className="survey-icon">📋</div>
+          <h3>Complete Your Questionnaire</h3>
+          <p>Please complete the roommate questionnaire in your profile to see your matches.</p>
+          <p className="survey-hint">Go to "My Profile" tab and fill out the questionnaire to get started!</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="match-list-container">
@@ -103,8 +145,17 @@ const MatchList = ({ userId }) => {
               <option value="name">Name</option>
             </select>
           </div>
+          <button className="refresh-btn" onClick={loadMatches} disabled={loading}>
+            {loading ? 'Refreshing...' : '🔄 Refresh'}
+          </button>
         </div>
       </div>
+
+      {error && !matches.length && (
+        <div className="error-banner">
+          <p>{error}</p>
+        </div>
+      )}
 
       {loading ? (
         <div className="loading">Loading matches...</div>
@@ -132,3 +183,4 @@ const MatchList = ({ userId }) => {
 };
 
 export default MatchList;
+

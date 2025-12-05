@@ -1,4 +1,266 @@
-
 {
-    
+  "alice@wsu.edu": {
+    "email": "alice@wsu.edu",
+    "password": "a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3",
+    "name": "Alice Chen",
+    "profile": {
+      "age": 20,
+      "major": "Computer Science",
+      "bio": "Early riser who loves coding and hiking. Looking for a clean and quiet roommate who respects study time."
+    },
+    "surveyCompleted": true
+  },
+  "bob@wsu.edu": {
+    "email": "bob@wsu.edu",
+    "password": "a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3",
+    "name": "Bob Martinez",
+    "profile": {
+      "age": 21,
+      "major": "Mechanical Engineering",
+      "bio": "Night owl, enjoys gaming and music. Very social but respectful of shared spaces."
+    },
+    "surveyCompleted": true
+  },
+  "carol@wsu.edu": {
+    "email": "carol@wsu.edu",
+    "password": "a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3",
+    "name": "Carol Williams",
+    "profile": {
+      "age": 19,
+      "major": "Biology",
+      "bio": "Pre-med student. Clean, organized, and quiet. No smoking or parties please!"
+    },
+    "surveyCompleted": true
+  },
+  "david@wsu.edu": {
+    "email": "david@wsu.edu",
+    "password": "a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3",
+    "name": "David Kim",
+    "profile": {
+      "age": 22,
+      "major": "Business Administration",
+      "bio": "Senior looking for a chill roommate. I work part-time so my schedule is flexible."
+    },
+    "surveyCompleted": true
+  },
+  "emma@wsu.edu": {
+    "email": "emma@wsu.edu",
+    "password": "a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3",
+    "name": "Emma Johnson",
+    "profile": {
+      "age": 20,
+      "major": "Psychology",
+      "bio": "Friendly and outgoing! Love cooking and hosting study groups. Pet-friendly preferred."
+    },
+    "surveyCompleted": true
+  },
+  "test_9908dff8@test.com": {
+    "email": "test_9908dff8@test.com",
+    "password": "b55c8792d1ce458e279308835f8a97b580263503e76e1998e279703e35ad0c2e",
+    "name": "Test User",
+    "profile": {
+      "age": null,
+      "major": null,
+      "bio": ""
+    },
+    "surveyCompleted": false
+  },
+  "test_363f8e7e@test.com": {
+    "email": "test_363f8e7e@test.com",
+    "password": "b55c8792d1ce458e279308835f8a97b580263503e76e1998e279703e35ad0c2e",
+    "name": "test_363f8e7e",
+    "profile": {
+      "age": null,
+      "major": null,
+      "bio": ""
+    },
+    "surveyCompleted": true
+  },
+  "test_ada4b1b7@test.com": {
+    "email": "test_ada4b1b7@test.com",
+    "password": "b55c8792d1ce458e279308835f8a97b580263503e76e1998e279703e35ad0c2e",
+    "name": "Updated Name",
+    "profile": {
+      "age": null,
+      "major": null,
+      "bio": ""
+    },
+    "surveyCompleted": false
+  },
+  "test_1523f9c9@test.com": {
+    "email": "test_1523f9c9@test.com",
+    "password": "b55c8792d1ce458e279308835f8a97b580263503e76e1998e279703e35ad0c2e",
+    "name": "test_1523f9c9",
+    "profile": {
+      "age": 21,
+      "major": "Computer Science",
+      "bio": "Test bio"
+    },
+    "surveyCompleted": false
+  },
+  "integration_deed79bf@test.com": {
+    "email": "integration_deed79bf@test.com",
+    "password": "b55c8792d1ce458e279308835f8a97b580263503e76e1998e279703e35ad0c2e",
+    "name": "Integration Test User",
+    "profile": {
+      "age": null,
+      "major": null,
+      "bio": ""
+    },
+    "surveyCompleted": true
+  },
+  "newuser_972d9439@test.com": {
+    "email": "newuser_972d9439@test.com",
+    "password": "b55c8792d1ce458e279308835f8a97b580263503e76e1998e279703e35ad0c2e",
+    "name": "New Test User",
+    "profile": {
+      "age": null,
+      "major": null,
+      "bio": ""
+    },
+    "surveyCompleted": true
+  },
+  "test_418f572b@test.com": {
+    "email": "test_418f572b@test.com",
+    "password": "b55c8792d1ce458e279308835f8a97b580263503e76e1998e279703e35ad0c2e",
+    "name": "Test User",
+    "profile": {
+      "age": null,
+      "major": null,
+      "bio": ""
+    },
+    "surveyCompleted": false
+  },
+  "test_e6f8df24@test.com": {
+    "email": "test_e6f8df24@test.com",
+    "password": "b55c8792d1ce458e279308835f8a97b580263503e76e1998e279703e35ad0c2e",
+    "name": "test_e6f8df24",
+    "profile": {
+      "age": null,
+      "major": null,
+      "bio": ""
+    },
+    "surveyCompleted": true
+  },
+  "test_970f8a14@test.com": {
+    "email": "test_970f8a14@test.com",
+    "password": "b55c8792d1ce458e279308835f8a97b580263503e76e1998e279703e35ad0c2e",
+    "name": "Updated Name",
+    "profile": {
+      "age": null,
+      "major": null,
+      "bio": ""
+    },
+    "surveyCompleted": false
+  },
+  "test_b7849f46@test.com": {
+    "email": "test_b7849f46@test.com",
+    "password": "b55c8792d1ce458e279308835f8a97b580263503e76e1998e279703e35ad0c2e",
+    "name": "test_b7849f46",
+    "profile": {
+      "age": 21,
+      "major": "Computer Science",
+      "bio": "Test bio"
+    },
+    "surveyCompleted": false
+  },
+  "integration_768f6f33@test.com": {
+    "email": "integration_768f6f33@test.com",
+    "password": "b55c8792d1ce458e279308835f8a97b580263503e76e1998e279703e35ad0c2e",
+    "name": "Integration Test User",
+    "profile": {
+      "age": null,
+      "major": null,
+      "bio": ""
+    },
+    "surveyCompleted": true
+  },
+  "newuser_0f223bb2@test.com": {
+    "email": "newuser_0f223bb2@test.com",
+    "password": "b55c8792d1ce458e279308835f8a97b580263503e76e1998e279703e35ad0c2e",
+    "name": "New Test User",
+    "profile": {
+      "age": null,
+      "major": null,
+      "bio": ""
+    },
+    "surveyCompleted": true
+  },
+  "asaf.kedar1@gmail.com": {
+    "email": "asaf.kedar1@gmail.com",
+    "password": "ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f",
+    "name": "asaf",
+    "profile": {
+      "age": 19,
+      "major": "cs",
+      "bio": "hi"
+    },
+    "surveyCompleted": true
+  },
+  "test_5f906baf@test.com": {
+    "email": "test_5f906baf@test.com",
+    "password": "b55c8792d1ce458e279308835f8a97b580263503e76e1998e279703e35ad0c2e",
+    "name": "Test User",
+    "profile": {
+      "age": null,
+      "major": null,
+      "bio": ""
+    },
+    "surveyCompleted": false
+  },
+  "test_ce5f5ea6@test.com": {
+    "email": "test_ce5f5ea6@test.com",
+    "password": "b55c8792d1ce458e279308835f8a97b580263503e76e1998e279703e35ad0c2e",
+    "name": "test_ce5f5ea6",
+    "profile": {
+      "age": null,
+      "major": null,
+      "bio": ""
+    },
+    "surveyCompleted": true
+  },
+  "test_0a000edd@test.com": {
+    "email": "test_0a000edd@test.com",
+    "password": "b55c8792d1ce458e279308835f8a97b580263503e76e1998e279703e35ad0c2e",
+    "name": "Updated Name",
+    "profile": {
+      "age": null,
+      "major": null,
+      "bio": ""
+    },
+    "surveyCompleted": false
+  },
+  "test_b00095c5@test.com": {
+    "email": "test_b00095c5@test.com",
+    "password": "b55c8792d1ce458e279308835f8a97b580263503e76e1998e279703e35ad0c2e",
+    "name": "test_b00095c5",
+    "profile": {
+      "age": 21,
+      "major": "Computer Science",
+      "bio": "Test bio"
+    },
+    "surveyCompleted": false
+  },
+  "integration_0a44047e@test.com": {
+    "email": "integration_0a44047e@test.com",
+    "password": "b55c8792d1ce458e279308835f8a97b580263503e76e1998e279703e35ad0c2e",
+    "name": "Integration Test User",
+    "profile": {
+      "age": null,
+      "major": null,
+      "bio": ""
+    },
+    "surveyCompleted": true
+  },
+  "newuser_d7892e81@test.com": {
+    "email": "newuser_d7892e81@test.com",
+    "password": "b55c8792d1ce458e279308835f8a97b580263503e76e1998e279703e35ad0c2e",
+    "name": "New Test User",
+    "profile": {
+      "age": null,
+      "major": null,
+      "bio": ""
+    },
+    "surveyCompleted": true
+  }
 }

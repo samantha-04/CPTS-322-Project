@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import './Registration.css';
 
+const API_BASE = 'http://localhost:5646';
+
 const Registration = ({ onRegister, onSwitchToLogin }) => {
   const [formData, setFormData] = useState({
     email: '',
     password: '',
-    confirmPassword: ''
+    confirmPassword: '',
+    name: ''
   });
   const [errors, setErrors] = useState({});
   const [isLoading, setIsLoading] = useState(false);
@@ -28,6 +31,11 @@ const Registration = ({ onRegister, onSwitchToLogin }) => {
 
   const validateForm = () => {
     const newErrors = {};
+
+    // Name validation (optional but recommended)
+    if (formData.name && formData.name.length < 2) {
+      newErrors.name = 'Name must be at least 2 characters';
+    }
 
     // Email validation
     if (!formData.email) {
@@ -62,21 +70,38 @@ const Registration = ({ onRegister, onSwitchToLogin }) => {
     }
 
     setIsLoading(true);
+    setErrors({});
     
     try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
-      if (onRegister) {
-        onRegister({
+      const response = await fetch(`${API_BASE}/api/auth/register`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
           email: formData.email,
-          password: formData.password
-        });
-      }
+          password: formData.password,
+          name: formData.name || undefined
+        })
+      });
       
-      console.log('Registration successful:', { email: formData.email });
+      const data = await response.json();
+      
+      if (response.ok && data.user) {
+        console.log('Registration successful:', data.user);
+        if (onRegister) {
+          onRegister(data.user);
+        }
+      } else {
+        if (response.status === 409) {
+          setErrors({ submit: 'An account with this email already exists. Please login instead.' });
+        } else {
+          setErrors({ submit: data.message || 'Registration failed. Please try again.' });
+        }
+      }
     } catch (error) {
-      setErrors({ submit: 'Registration failed. Please try again.' });
+      console.error('Registration error:', error);
+      setErrors({ submit: 'Network error. Please check if the server is running.' });
     } finally {
       setIsLoading(false);
     }
@@ -89,6 +114,21 @@ const Registration = ({ onRegister, onSwitchToLogin }) => {
         <p className="registration-subtitle">Join the roommate community</p>
         
         <form onSubmit={handleSubmit} className="registration-form">
+          <div className="form-group">
+            <label htmlFor="name" className="form-label">Name (optional)</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              value={formData.name}
+              onChange={handleInputChange}
+              className={`form-input ${errors.name ? 'error' : ''}`}
+              placeholder="Enter your name"
+              disabled={isLoading}
+            />
+            {errors.name && <span className="error-message">{errors.name}</span>}
+          </div>
+
           <div className="form-group">
             <label htmlFor="email" className="form-label">Email Address</label>
             <input
@@ -113,7 +153,7 @@ const Registration = ({ onRegister, onSwitchToLogin }) => {
               value={formData.password}
               onChange={handleInputChange}
               className={`form-input ${errors.password ? 'error' : ''}`}
-              placeholder="Create a password"
+              placeholder="Create a password (min 8 characters)"
               disabled={isLoading}
             />
             {errors.password && <span className="error-message">{errors.password}</span>}

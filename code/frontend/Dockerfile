@@ -1,4 +1,4 @@
-# Multi-stage build: Node.js for React build, Python for Flask serve
+# Multi-stage build: Node.js for React build, nginx for serving
 FROM node:18-alpine AS react-build
 
 # Set working directory for React build
@@ -17,31 +17,18 @@ COPY code/frontend/public ./public
 # Build React app
 RUN npm run build
 
-# Python stage for Flask server
-FROM python:3.9-slim
+# Nginx stage for serving static files
+FROM nginx:alpine
 
-# Set environment variables
-ENV PYTHONDONTWRITEBYTECODE=1
-ENV PYTHONUNBUFFERED=1
-
-WORKDIR /app
-
-# Install system dependencies
-RUN apt-get update && apt-get install -y \
-    curl \
-    && rm -rf /var/lib/apt/lists/*
-
-# Copy requirements and install Python dependencies
-COPY requirements.txt .
-RUN pip install --no-cache-dir --upgrade pip && \
-    pip install --no-cache-dir -r requirements.txt
-
-# Copy frontend code (including Flask app)
-COPY code/frontend/ ./frontend/
+# Copy custom nginx config
+COPY code/frontend/nginx.conf /etc/nginx/conf.d/default.conf
 
 # Copy built React app from previous stage
-COPY --from=react-build /app/build ./frontend/build
+COPY --from=react-build /app/build /usr/share/nginx/html
+
+# Copy VERSION file for reference
+COPY code/frontend/VERSION /usr/share/nginx/html/VERSION
 
 EXPOSE 8000
 
-CMD ["python", "frontend/app.py"]
+CMD ["nginx", "-g", "daemon off;"]
