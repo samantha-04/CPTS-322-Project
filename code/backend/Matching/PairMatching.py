@@ -43,34 +43,18 @@ class PairMatching:
             return None
 
 
-tests = [
-    [0.12, 0.45, 0.78],
-    [0.34, 0.56, 0.12],
-    [0.67, 0.23, 0.89],
-    [0.91, 0.34, 0.22],
-    [0.15, 0.77, 0.63],
-    [0.48, 0.52, 0.94],
-    [0.39, 0.61, 0.73],
-    [0.25, 0.85, 0.49],
-    [0.74, 0.36, 0.27],
-    [0.58, 0.92, 0.41],
-    [0.13, 0.67, 0.58],
-    [0.44, 0.29, 0.88],
-    [0.19, 0.53, 0.72],
-    [0.83, 0.64, 0.35],
-    [0.57, 0.48, 0.66],
-    [0.28, 0.75, 0.51],
-    [0.96, 0.22, 0.84],
-    [0.62, 0.31, 0.79],
-    [0.73, 0.94, 0.25],
-    [0.85, 0.46, 0.68],
-    [0.41, 0.57, 0.19],
-    [0.32, 0.81, 0.56],
-    [0.27, 0.93, 0.44],
-    [0.76, 0.38, 0.53],
-    [0.54, 0.69, 0.37],
-]
-matchtests = PairMatching(tests)
+"""
+import random
+
+def generate_Arrays(row: int, col: int) -> list[float]:
+    lists = []
+    for _ in range(row):
+        rand_list = [random.uniform(0, 2) for _ in range(col)]
+        lists.append(rand_list)
+    return lists
+
+
+matchtests = PairMatching(generate_Arrays(150, 25))
 i = 1
 while True:
     res = matchtests.findMatch()
@@ -78,3 +62,4 @@ while True:
     if res == None:
         break
     i += 1
+"""
