@@ -7,8 +7,6 @@ services:
       - "8000:8000"
     environment:
       - FLASK_ENV=development
-    volumes:
-      - ./code/frontend:/app/frontend
     restart: unless-stopped
     depends_on:
       - backend
